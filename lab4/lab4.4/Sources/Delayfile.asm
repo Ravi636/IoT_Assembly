@@ -1,0 +1,9 @@
+  XDEF Start
+  XREF DelayCount
+
+
+Start:    LDY     DelayCount
+Delay:    DEY 
+          BNE     Delay    
+          
+          RTS     

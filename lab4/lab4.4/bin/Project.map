@@ -1,0 +1,133 @@
+*** EVALUATION ***
+PROGRAM "C:\Users\ravimann\OneDrive - Indiana University\Documents\2023 Fall Classes\Microprocesser Lab\lab4\lab4.4\bin\Project.abs"
+
+*********************************************************************************************
+TARGET SECTION
+---------------------------------------------------------------------------------------------
+Processor   : Freescale HC12
+Memory Model: SMALL
+File Format : ELF\DWARF 2.0
+Linker      : SmartLinker V-5.0.40 Build 10203, Jul 23 2010
+
+*********************************************************************************************
+FILE SECTION
+---------------------------------------------------------------------------------------------
+main.asm.o                              Model: SMALL,         Lang: Assembler
+Delayfile.asm.o                         Model: SMALL,         Lang: Assembler
+
+*********************************************************************************************
+STARTUP SECTION
+---------------------------------------------------------------------------------------------
+Entry point: 0xC000 (Entry)
+
+*********************************************************************************************
+SECTION-ALLOCATION SECTION
+Section Name                    Size  Type     From       To       Segment
+---------------------------------------------------------------------------------------------
+.init                             26     R     0xC000     0xC019   ROM_C000
+.stack                           256   R/W      0x400      0x4FF   RAM
+Constants                          5     R     0xC01A     0xC01E   ROM_C000
+Variables                          1   R/W      0x500      0x500   RAM
+Delayfile.asm._SEC000000           7     R   0x388000   0x388006   PAGE_38
+.vectSeg0_vect                     2     R     0xFFFE     0xFFFF   .vectSeg0
+
+Summary of section sizes per section type:
+READ_ONLY (R):          28 (dec:       40)
+READ_WRITE (R/W):      101 (dec:      257)
+
+*********************************************************************************************
+VECTOR-ALLOCATION SECTION
+    Address     InitValue   InitFunction
+---------------------------------------------------------------------------------------------
+     0xFFFE        0xC000   Entry
+
+*********************************************************************************************
+OBJECT-ALLOCATION SECTION
+     Name               Module                 Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+MODULE:                 -- main.asm.o --
+- PROCEDURES:
+     Entry                                     C000       8       8       0   .init       
+     _Startup                                  C000       0       0       0   .init       
+     main                                      C000       0       0       0   .init       
+     Array_loop                                C008       3       3       0   .init       
+     loop                                      C00B       F      15       0   .init       
+- VARIABLES:
+     DelayCount                                 500       1       1       1   Variables   
+     array                                     C01A       5       5       1   Constants   
+- LABELS:
+     __SEG_END_SSTACK                           500       0       0       1               
+MODULE:                 -- Delayfile.asm.o --
+- PROCEDURES:
+     Start                                   388000       3       3       1   Delayfile.asm._SEC000000
+     Delay                                   388003       4       4       0   Delayfile.asm._SEC000000
+- VARIABLES:
+
+*********************************************************************************************
+MODULE STATISTIC
+  Name                                      Data   Code  Const
+---------------------------------------------------------------------------------------------
+  main.asm.o                                   1     26      5
+  Delayfile.asm.o                              0      7      0
+  other                                      256      2      0
+
+*********************************************************************************************
+SECTION USE IN OBJECT-ALLOCATION SECTION
+---------------------------------------------------------------------------------------------
+SECTION: ".init"
+  main _Startup Entry Array_loop loop 
+SECTION: "Constants"
+  array 
+SECTION: "Variables"
+  DelayCount 
+SECTION: "Delayfile.asm._SEC000000"
+  Start Delay 
+
+*********************************************************************************************
+OBJECT LIST SORTED BY ADDRESS
+     Name                                      Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+     DelayCount                                 500       1       1       1   Variables   
+     main                                      C000       0       0       0   .init       
+     _Startup                                  C000       0       0       0   .init       
+     Entry                                     C000       8       8       0   .init       
+     Array_loop                                C008       3       3       0   .init       
+     loop                                      C00B       F      15       0   .init       
+     array                                     C01A       5       5       1   Constants   
+     Start                                   388000       3       3       1   Delayfile.asm._SEC000000
+     Delay                                   388003       4       4       0   Delayfile.asm._SEC000000
+
+*********************************************************************************************
+UNUSED-OBJECTS SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+COPYDOWN SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+OBJECT-DEPENDENCIES SECTION
+---------------------------------------------------------------------------------------------
+Entry                     USES __SEG_END_SSTACK 
+Array_loop                USES array 
+loop                      USES Start 
+Start                     USES DelayCount 
+
+*********************************************************************************************
+DEPENDENCY TREE
+*********************************************************************************************
+ main and _Startup Group
+ | 
+ +- main                
+ |    
+ +- Entry               
+      
+*********************************************************************************************
+STATISTIC SECTION
+---------------------------------------------------------------------------------------------
+
+ExeFile:
+--------
+Number of blocks to be downloaded: 4
+Total size of all blocks to be downloaded: 40
+

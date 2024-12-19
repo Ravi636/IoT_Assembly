@@ -1,0 +1,123 @@
+*** EVALUATION ***
+PROGRAM "C:\Users\ravimann\OneDrive - Indiana University\Documents\2023 Fall Classes\Microprocesser Lab\lab4\lab4.3\bin\Project.abs"
+
+*********************************************************************************************
+TARGET SECTION
+---------------------------------------------------------------------------------------------
+Processor   : Freescale HC12
+Memory Model: SMALL
+File Format : ELF\DWARF 2.0
+Linker      : SmartLinker V-5.0.40 Build 10203, Jul 23 2010
+
+*********************************************************************************************
+FILE SECTION
+---------------------------------------------------------------------------------------------
+main.asm.o                              Model: SMALL,         Lang: Assembler
+
+*********************************************************************************************
+STARTUP SECTION
+---------------------------------------------------------------------------------------------
+Entry point: 0xC000 (Entry)
+
+*********************************************************************************************
+SECTION-ALLOCATION SECTION
+Section Name                    Size  Type     From       To       Segment
+---------------------------------------------------------------------------------------------
+.init                             27     R     0xC000     0xC01A   ROM_C000
+.stack                           256   R/W      0x400      0x4FF   RAM
+Constants                         18     R     0xC01B     0xC02C   ROM_C000
+Variables                          1   R/W      0x500      0x500   RAM
+.vectSeg0_vect                     2     R     0xFFFE     0xFFFF   .vectSeg0
+
+Summary of section sizes per section type:
+READ_ONLY (R):          2F (dec:       47)
+READ_WRITE (R/W):      101 (dec:      257)
+
+*********************************************************************************************
+VECTOR-ALLOCATION SECTION
+    Address     InitValue   InitFunction
+---------------------------------------------------------------------------------------------
+     0xFFFE        0xC000   Entry
+
+*********************************************************************************************
+OBJECT-ALLOCATION SECTION
+     Name               Module                 Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+MODULE:                 -- main.asm.o --
+- PROCEDURES:
+     Entry                                     C000       6       6       0   .init       
+     _Startup                                  C000       0       0       0   .init       
+     main                                      C000       0       0       0   .init       
+     Loop                                      C006       E      14       0   .init       
+     Match                                     C014       4       4       0   .init       
+     No_Match                                  C018       2       2       0   .init       
+     Done                                      C01A       1       1       0   .init       
+- VARIABLES:
+     Val                                        500       1       1       1   Variables   
+     Count                                     C01B       1       1       1   Constants   
+     Lookup                                    C01C      11      17       1   Constants   
+
+*********************************************************************************************
+MODULE STATISTIC
+  Name                                      Data   Code  Const
+---------------------------------------------------------------------------------------------
+  main.asm.o                                   1     27     18
+  other                                      256      2      0
+
+*********************************************************************************************
+SECTION USE IN OBJECT-ALLOCATION SECTION
+---------------------------------------------------------------------------------------------
+SECTION: ".init"
+  main _Startup Entry Loop Match No_Match Done 
+SECTION: "Constants"
+  Count Lookup 
+SECTION: "Variables"
+  Val 
+
+*********************************************************************************************
+OBJECT LIST SORTED BY ADDRESS
+     Name                                      Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+     Val                                        500       1       1       1   Variables   
+     main                                      C000       0       0       0   .init       
+     _Startup                                  C000       0       0       0   .init       
+     Entry                                     C000       6       6       0   .init       
+     Loop                                      C006       E      14       0   .init       
+     Match                                     C014       4       4       0   .init       
+     No_Match                                  C018       2       2       0   .init       
+     Done                                      C01A       1       1       0   .init       
+     Count                                     C01B       1       1       1   Constants   
+     Lookup                                    C01C      11      17       1   Constants   
+
+*********************************************************************************************
+UNUSED-OBJECTS SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+COPYDOWN SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+OBJECT-DEPENDENCIES SECTION
+---------------------------------------------------------------------------------------------
+Entry                     USES Lookup Count 
+Loop                      USES Val 
+
+*********************************************************************************************
+DEPENDENCY TREE
+*********************************************************************************************
+ main and _Startup Group
+ | 
+ +- main                
+ |    
+ +- Entry               
+      
+*********************************************************************************************
+STATISTIC SECTION
+---------------------------------------------------------------------------------------------
+
+ExeFile:
+--------
+Number of blocks to be downloaded: 3
+Total size of all blocks to be downloaded: 47
+
