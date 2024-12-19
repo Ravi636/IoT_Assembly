@@ -1,0 +1,57 @@
+            INCLUDE 'derivative.inc'
+
+            XDEF PORT_U, Entry, _Startup, main, ROW_SCAN, PD_BUTTONS, TEMP_PORT_U, LU_PORT_U, KEY_PRESSED
+
+            XREF  __SEG_END_SSTACK, KEYPAD      
+            ; keypad is beginning of keypad subroutine
+            ; key pressed is which key was pressed 
+            
+MY_CONSTANT_ROM: SECTION 
+ROW_SCAN    DC.B  $80, $40, $20, $10, $00
+PD_BUTTONS  DC.B  $14, $88, $84, $82, $48, $44, $42, $28, $24, $22, $18, $12, $81, $41, $21, $11
+                ; 0    1    2    3    4    5    6    7    8    9    10   11   12   13   14   15
+                              
+
+MY_EXTENDED_RAM: SECTION
+PORT_S      EQU $248
+PORT_S_DDR  EQU $24A
+PORT_U      EQU $268
+PORT_U_DDR  EQU $26A
+PORT_U_PSR  EQU $26D
+PORT_U_PDER EQU $26C
+
+TEMP_PORT_U DS.B  1
+LU_PORT_U   DS.B  1
+KEY_PRESSED DS.B  1
+
+MyCode:     SECTION
+main:
+_Startup:
+Entry:
+            LDS   #__SEG_END_SSTACK     ; initialize the stack pointer
+            BSET  PORT_S_DDR, #$FF
+            BSET  PORT_U_DDR, #$F0
+            BSET  PORT_U_PSR, #$0F
+            BSET  PORT_U_PDER, #$0F
+            
+ODD_CYCLE     LDAB  #$02             
+
+READ_KEYPAD:  JSR   KEYPAD              ; jump to keypad subroutine
+              DECB
+              BEQ   UPPER_NIBBLE
+                          
+LOWER_NIBBLE: ANDA  #$F0
+              ORAA  KEY_PRESSED
+              STAA  PORT_S              ; send key pressed to leds
+              BRA   READ_KEYPAD         ; read the keypad again
+
+UPPER_NIBBLE: LDY   #$04
+LEFT_SHIFT:   LSL   KEY_PRESSED
+              DEY
+              BEQ   SEND
+              BRA   LEFT_SHIFT
+
+SEND:         ANDA  #$0F
+              ORAA  KEY_PRESSED  
+              STAA  PORT_S
+              BRA   ODD_CYCLE

@@ -1,0 +1,41 @@
+  XDEF Sequence
+  XREF Port_u, Start_Dealy, Count, Read_array
+
+
+Sequence:	
+              LDX	#Port_u_array	  ; load address of array into X
+              LDAA 0,X 
+Next:         STAA	Port_u		    ; Load value of array into Port_u
+              INX				          ; Increment the register
+              JRA	Start_Delay	
+           
+              BRA   Read_portU
+              
+Read_portU:		LDAA	Port_u            ; Read value of Port_u 
+              STAA  Current
+              ANDA	#$0F		        	; Test if A = $0F
+              CMPA  #$0F
+              BEQ 	Next            	; Zero then branch to next sequence
+              BRA   Key_pressed
+             
+Key_pressed:  
+              LDAA  Port_u
+              ANDA  #$0F
+              CMPA  #$0F
+              BEQ   Not_pressed
+              BRA   Key_pressed
+
+Not_pressed;  LDY		  #Read_array	; Load address of Lookup Table into Y			      
+			        LDAA     Count   ; Load B with Count value
+			      
+            				        	
+Loop:         LDAB    1, Y+   ; Load value from X+1 into A and X=X+1
+              CMPB		Current ; Get Lookup Value
+              BEQ     Match            
+              INCA            ; Increment A
+              BRA		  Loop		; Branch to loop
+  			      
+Match:           
+              STAA    Current
+
+              RTS

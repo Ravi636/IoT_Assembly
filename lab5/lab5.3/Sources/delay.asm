@@ -1,0 +1,7 @@
+      XDEF Start_Dealy
+      
+
+Start_Dealy:	LDY 	#1000 	    ; Load delay counter of 30 milliseconds
+Delay: 		    DEY 			        ; decrement Y
+			        BNE   Delay 		  ; Branch to Delay if Y != 0
+              RTS

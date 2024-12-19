@@ -1,0 +1,163 @@
+*** EVALUATION ***
+PROGRAM "C:\Users\ravimann\OneDrive - Indiana University\Documents\2023 Fall Classes\Microprocesser Lab\lab5\lab5.2\bin\Project.abs"
+
+*********************************************************************************************
+TARGET SECTION
+---------------------------------------------------------------------------------------------
+Processor   : Freescale HC12
+Memory Model: SMALL
+File Format : ELF\DWARF 2.0
+Linker      : SmartLinker V-5.0.40 Build 10203, Jul 23 2010
+
+*********************************************************************************************
+FILE SECTION
+---------------------------------------------------------------------------------------------
+main.asm.o                              Model: SMALL,         Lang: Assembler
+Delayfile.asm.o                         Model: SMALL,         Lang: Assembler
+
+*********************************************************************************************
+STARTUP SECTION
+---------------------------------------------------------------------------------------------
+Entry point: 0xC000 (Entry)
+
+*********************************************************************************************
+SECTION-ALLOCATION SECTION
+Section Name                    Size  Type     From       To       Segment
+---------------------------------------------------------------------------------------------
+.init                             97     R     0xC000     0xC060   ROM_C000
+.stack                           256   R/W      0x400      0x4FF   RAM
+Constants                         10     R     0xC061     0xC06A   ROM_C000
+Variables                          1   R/W      0x500      0x500   RAM
+Delayfile.asm._SEC000000           7     R   0x388000   0x388006   PAGE_38
+.vectSeg0_vect                     2     R     0xFFFE     0xFFFF   .vectSeg0
+
+Summary of section sizes per section type:
+READ_ONLY (R):          74 (dec:      116)
+READ_WRITE (R/W):      101 (dec:      257)
+
+*********************************************************************************************
+VECTOR-ALLOCATION SECTION
+    Address     InitValue   InitFunction
+---------------------------------------------------------------------------------------------
+     0xFFFE        0xC000   Entry
+
+*********************************************************************************************
+OBJECT-ALLOCATION SECTION
+     Name               Module                 Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+MODULE:                 -- main.asm.o --
+- PROCEDURES:
+     Entry                                     C000       8       8       0   .init       
+     _Startup                                  C000       0       0       0   .init       
+     main                                      C000       0       0       0   .init       
+     Check1                                    C008       C      12       0   .init       
+     Check_2                                   C014       7       7       0   .init       
+     Clockwise                                 C01B       3       3       0   .init       
+     Array_loop                                C01B       0       0       0   .init       
+     loop                                      C01E       B      11       0   .init       
+     Counter_clockwise                         C029       3       3       0   .init       
+     Array_loop2                               C029       0       0       0   .init       
+     loop2                                     C02C       9       9       0   .init       
+     Check3                                    C035       7       7       0   .init       
+     speed_high                                C03C       8       8       0   .init       
+     speed_low                                 C044       6       6       0   .init       
+     speed                                     C04A       3       3       0   .init       
+     Check1a                                   C04D       C      12       0   .init       
+     Check_2a                                  C059       8       8       0   .init       
+- VARIABLES:
+     DelayCount                                 500       1       1       3   Variables   
+     array                                     C061       5       5       1   Constants   
+     array2                                    C066       5       5       1   Constants   
+- LABELS:
+     __SEG_END_SSTACK                           500       0       0       1               
+MODULE:                 -- Delayfile.asm.o --
+- PROCEDURES:
+     Start                                   388000       3       3       1   Delayfile.asm._SEC000000
+     Delay                                   388003       4       4       0   Delayfile.asm._SEC000000
+- VARIABLES:
+
+*********************************************************************************************
+MODULE STATISTIC
+  Name                                      Data   Code  Const
+---------------------------------------------------------------------------------------------
+  main.asm.o                                   1     97     10
+  Delayfile.asm.o                              0      7      0
+  other                                      256      2      0
+
+*********************************************************************************************
+SECTION USE IN OBJECT-ALLOCATION SECTION
+---------------------------------------------------------------------------------------------
+SECTION: ".init"
+  main _Startup Entry Check1 Check_2 Array_loop Clockwise loop Array_loop2 
+  Counter_clockwise loop2 Check3 speed_high speed_low speed Check1a Check_2a 
+SECTION: "Constants"
+  array array2 
+SECTION: "Variables"
+  DelayCount 
+SECTION: "Delayfile.asm._SEC000000"
+  Start Delay 
+
+*********************************************************************************************
+OBJECT LIST SORTED BY ADDRESS
+     Name                                      Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+     DelayCount                                 500       1       1       3   Variables   
+     main                                      C000       0       0       0   .init       
+     _Startup                                  C000       0       0       0   .init       
+     Entry                                     C000       8       8       0   .init       
+     Check1                                    C008       C      12       0   .init       
+     Check_2                                   C014       7       7       0   .init       
+     Array_loop                                C01B       0       0       0   .init       
+     Clockwise                                 C01B       3       3       0   .init       
+     loop                                      C01E       B      11       0   .init       
+     Array_loop2                               C029       0       0       0   .init       
+     Counter_clockwise                         C029       3       3       0   .init       
+     loop2                                     C02C       9       9       0   .init       
+     Check3                                    C035       7       7       0   .init       
+     speed_high                                C03C       8       8       0   .init       
+     speed_low                                 C044       6       6       0   .init       
+     speed                                     C04A       3       3       0   .init       
+     Check1a                                   C04D       C      12       0   .init       
+     Check_2a                                  C059       8       8       0   .init       
+     array                                     C061       5       5       1   Constants   
+     array2                                    C066       5       5       1   Constants   
+     Start                                   388000       3       3       1   Delayfile.asm._SEC000000
+     Delay                                   388003       4       4       0   Delayfile.asm._SEC000000
+
+*********************************************************************************************
+UNUSED-OBJECTS SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+COPYDOWN SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+OBJECT-DEPENDENCIES SECTION
+---------------------------------------------------------------------------------------------
+Entry                     USES __SEG_END_SSTACK 
+Clockwise                 USES array 
+Counter_clockwise         USES array2 
+speed_high                USES DelayCount 
+speed_low                 USES DelayCount 
+speed                     USES Start 
+Start                     USES DelayCount 
+
+*********************************************************************************************
+DEPENDENCY TREE
+*********************************************************************************************
+ main and _Startup Group
+ | 
+ +- main                
+ |    
+ +- Entry               
+      
+*********************************************************************************************
+STATISTIC SECTION
+---------------------------------------------------------------------------------------------
+
+ExeFile:
+--------
+Number of blocks to be downloaded: 4
+Total size of all blocks to be downloaded: 116
+

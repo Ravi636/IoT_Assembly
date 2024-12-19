@@ -1,0 +1,170 @@
+*** EVALUATION ***
+PROGRAM "C:\Users\ravimann\OneDrive - Indiana University\Documents\2023 Fall Classes\Microprocesser Lab\lab5\lab5.3\bin\Project.abs"
+
+*********************************************************************************************
+TARGET SECTION
+---------------------------------------------------------------------------------------------
+Processor   : Freescale HC12
+Memory Model: SMALL
+File Format : ELF\DWARF 2.0
+Linker      : SmartLinker V-5.0.40 Build 10203, Jul 23 2010
+
+*********************************************************************************************
+FILE SECTION
+---------------------------------------------------------------------------------------------
+main.asm.o                              Model: SMALL,         Lang: Assembler
+delay.asm.o                             Model: SMALL,         Lang: Assembler
+Read_PortU.asm.o                        Model: SMALL,         Lang: Assembler
+
+*********************************************************************************************
+STARTUP SECTION
+---------------------------------------------------------------------------------------------
+Entry point: 0xC000 (Entry)
+
+*********************************************************************************************
+SECTION-ALLOCATION SECTION
+Section Name                    Size  Type     From       To       Segment
+---------------------------------------------------------------------------------------------
+.init                             81     R     0xC000     0xC050   ROM_C000
+.stack                           256   R/W      0x400      0x4FF   RAM
+Constants                         22     R     0xC051     0xC066   ROM_C000
+Variables                          4   R/W      0x500      0x503   RAM
+delay.asm._SEC000000               7     R   0x388000   0x388006   PAGE_38
+Read_PortU.asm._SEC000000         63     R   0x388007   0x388045   PAGE_38
+.vectSeg0_vect                     2     R     0xFFFE     0xFFFF   .vectSeg0
+
+Summary of section sizes per section type:
+READ_ONLY (R):          AF (dec:      175)
+READ_WRITE (R/W):      104 (dec:      260)
+
+*********************************************************************************************
+VECTOR-ALLOCATION SECTION
+    Address     InitValue   InitFunction
+---------------------------------------------------------------------------------------------
+     0xFFFE        0xC000   Entry
+
+*********************************************************************************************
+OBJECT-ALLOCATION SECTION
+     Name               Module                 Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+MODULE:                 -- main.asm.o --
+- PROCEDURES:
+     Entry                                     C000      18      24       0   .init       
+     _Startup                                  C000       0       0       0   .init       
+     main                                      C000       0       0       0   .init       
+     Read                                      C018      1C      28       0   .init       
+     LED2                                      C034      1D      29       0   .init       
+- VARIABLES:
+     Count                                      500       1       1       0   Variables   
+     Current                                    501       1       1       9   Variables   
+     Val                                        502       1       1       4   Variables   
+     Temp                                       503       1       1       4   Variables   
+     Port_u_array                              C051       5       5       1   Constants   
+     Read_array                                C056      11      17       1   Constants   
+- LABELS:
+     __SEG_END_SSTACK                           500       0       0       1               
+     Port_u                                     268       0       0       3   .text       
+MODULE:                 -- delay.asm.o --
+- PROCEDURES:
+     Start_Dealy                             388000       3       3       1   delay.asm._SEC000000
+     Delay                                   388003       4       4       0   delay.asm._SEC000000
+- VARIABLES:
+MODULE:                 -- Read_PortU.asm.o --
+- PROCEDURES:
+     Sequence                                388007       3       3       1   Read_PortU.asm._SEC000000
+     Next                                    38800A      18      24       0   Read_PortU.asm._SEC000000
+     Key_pressed                             388022       D      13       0   Read_PortU.asm._SEC000000
+     Not_pressed                             38802F       5       5       0   Read_PortU.asm._SEC000000
+     Loop                                    388034       E      14       0   Read_PortU.asm._SEC000000
+     Match                                   388042       4       4       0   Read_PortU.asm._SEC000000
+- VARIABLES:
+
+*********************************************************************************************
+MODULE STATISTIC
+  Name                                      Data   Code  Const
+---------------------------------------------------------------------------------------------
+  main.asm.o                                   4     81     22
+  delay.asm.o                                  0      7      0
+  Read_PortU.asm.o                             0     63      0
+  other                                      256      2      0
+
+*********************************************************************************************
+SECTION USE IN OBJECT-ALLOCATION SECTION
+---------------------------------------------------------------------------------------------
+SECTION: ".text"
+  Port_u 
+SECTION: ".init"
+  main _Startup Entry Read LED2 
+SECTION: "Constants"
+  Port_u_array Read_array 
+SECTION: "Variables"
+  Count Current Val Temp 
+SECTION: "delay.asm._SEC000000"
+  Start_Dealy Delay 
+SECTION: "Read_PortU.asm._SEC000000"
+  Sequence Next Key_pressed Not_pressed Loop Match 
+
+*********************************************************************************************
+OBJECT LIST SORTED BY ADDRESS
+     Name                                      Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+     Port_u                                     268       0       0       3   .text       
+     Count                                      500       1       1       0   Variables   
+     Current                                    501       1       1       9   Variables   
+     Val                                        502       1       1       4   Variables   
+     Temp                                       503       1       1       4   Variables   
+     main                                      C000       0       0       0   .init       
+     _Startup                                  C000       0       0       0   .init       
+     Entry                                     C000      18      24       0   .init       
+     Read                                      C018      1C      28       0   .init       
+     LED2                                      C034      1D      29       0   .init       
+     Port_u_array                              C051       5       5       1   Constants   
+     Read_array                                C056      11      17       1   Constants   
+     Start_Dealy                             388000       3       3       1   delay.asm._SEC000000
+     Delay                                   388003       4       4       0   delay.asm._SEC000000
+     Sequence                                388007       3       3       1   Read_PortU.asm._SEC000000
+     Next                                    38800A      18      24       0   Read_PortU.asm._SEC000000
+     Key_pressed                             388022       D      13       0   Read_PortU.asm._SEC000000
+     Not_pressed                             38802F       5       5       0   Read_PortU.asm._SEC000000
+     Loop                                    388034       E      14       0   Read_PortU.asm._SEC000000
+     Match                                   388042       4       4       0   Read_PortU.asm._SEC000000
+
+*********************************************************************************************
+UNUSED-OBJECTS SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+COPYDOWN SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+OBJECT-DEPENDENCIES SECTION
+---------------------------------------------------------------------------------------------
+Entry                     USES __SEG_END_SSTACK Val 
+Read                      USES Sequence Val Current 
+LED2                      USES Current Val 
+Sequence                  USES Port_u_array 
+Next                      USES Port_u Start_Dealy Current Temp 
+Key_pressed               USES Port_u Temp 
+Not_pressed               USES Read_array 
+Loop                      USES Current 
+Match                     USES Current 
+
+*********************************************************************************************
+DEPENDENCY TREE
+*********************************************************************************************
+ main and _Startup Group
+ | 
+ +- main                
+ |    
+ +- Entry               
+      
+*********************************************************************************************
+STATISTIC SECTION
+---------------------------------------------------------------------------------------------
+
+ExeFile:
+--------
+Number of blocks to be downloaded: 5
+Total size of all blocks to be downloaded: 175
+
