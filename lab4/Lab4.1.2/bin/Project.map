@@ -1,0 +1,124 @@
+*** EVALUATION ***
+PROGRAM "C:\Users\ravimann\OneDrive - Indiana University\Documents\2023 Fall Classes\Microprocesser Lab\lab4\Lab4.1.2\bin\Project.abs"
+
+*********************************************************************************************
+TARGET SECTION
+---------------------------------------------------------------------------------------------
+Processor   : Freescale HC12
+Memory Model: SMALL
+File Format : ELF\DWARF 2.0
+Linker      : SmartLinker V-5.0.40 Build 10203, Jul 23 2010
+
+*********************************************************************************************
+FILE SECTION
+---------------------------------------------------------------------------------------------
+main.asm.o                              Model: SMALL,         Lang: Assembler
+
+*********************************************************************************************
+STARTUP SECTION
+---------------------------------------------------------------------------------------------
+Entry point: 0xC000 (Entry)
+
+*********************************************************************************************
+SECTION-ALLOCATION SECTION
+Section Name                    Size  Type     From       To       Segment
+---------------------------------------------------------------------------------------------
+.init                             55     R     0xC000     0xC036   ROM_C000
+.stack                           256   R/W      0x400      0x4FF   RAM
+Variables                         17     R     0xC037     0xC047   ROM_C000
+.vectSeg0_vect                     2     R     0xFFFE     0xFFFF   .vectSeg0
+
+Summary of section sizes per section type:
+READ_ONLY (R):          4A (dec:       74)
+READ_WRITE (R/W):      100 (dec:      256)
+
+*********************************************************************************************
+VECTOR-ALLOCATION SECTION
+    Address     InitValue   InitFunction
+---------------------------------------------------------------------------------------------
+     0xFFFE        0xC000   Entry
+
+*********************************************************************************************
+OBJECT-ALLOCATION SECTION
+     Name               Module                 Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+MODULE:                 -- main.asm.o --
+- PROCEDURES:
+     Entry                                     C000       E      14       0   .init       
+     _Startup                                  C000       0       0       0   .init       
+     main                                      C000       0       0       0   .init       
+     A1_loop                                   C00E       3       3       0   .init       
+     Loop1                                     C011       B      11       0   .init       
+     A2_loop                                   C01C       3       3       0   .init       
+     Loop2                                     C01F       9       9       0   .init       
+     Start_delay                               C028       3       3       0   .init       
+     Delay                                     C02B       C      12       0   .init       
+- VARIABLES:
+     Array1                                    C037       6       6       1   Variables   
+     Array2                                    C03D       9       9       1   Variables   
+     Val_T                                     C046       2       2       0   Variables   
+
+*********************************************************************************************
+MODULE STATISTIC
+  Name                                      Data   Code  Const
+---------------------------------------------------------------------------------------------
+  main.asm.o                                   0     55     17
+  other                                      256      2      0
+
+*********************************************************************************************
+SECTION USE IN OBJECT-ALLOCATION SECTION
+---------------------------------------------------------------------------------------------
+SECTION: ".init"
+  main _Startup Entry A1_loop Loop1 A2_loop Loop2 Start_delay Delay 
+SECTION: "Variables"
+  Array1 Array2 Val_T 
+
+*********************************************************************************************
+OBJECT LIST SORTED BY ADDRESS
+     Name                                      Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+     main                                      C000       0       0       0   .init       
+     _Startup                                  C000       0       0       0   .init       
+     Entry                                     C000       E      14       0   .init       
+     A1_loop                                   C00E       3       3       0   .init       
+     Loop1                                     C011       B      11       0   .init       
+     A2_loop                                   C01C       3       3       0   .init       
+     Loop2                                     C01F       9       9       0   .init       
+     Start_delay                               C028       3       3       0   .init       
+     Delay                                     C02B       C      12       0   .init       
+     Array1                                    C037       6       6       1   Variables   
+     Array2                                    C03D       9       9       1   Variables   
+     Val_T                                     C046       2       2       0   Variables   
+
+*********************************************************************************************
+UNUSED-OBJECTS SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+COPYDOWN SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+OBJECT-DEPENDENCIES SECTION
+---------------------------------------------------------------------------------------------
+A1_loop                   USES Array1 
+A2_loop                   USES Array2 
+
+*********************************************************************************************
+DEPENDENCY TREE
+*********************************************************************************************
+ main and _Startup Group
+ | 
+ +- main                
+ |    
+ +- Entry               
+      
+*********************************************************************************************
+STATISTIC SECTION
+---------------------------------------------------------------------------------------------
+
+ExeFile:
+--------
+Number of blocks to be downloaded: 3
+Total size of all blocks to be downloaded: 74
+
