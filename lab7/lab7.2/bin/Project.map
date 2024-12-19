@@ -1,0 +1,123 @@
+*** EVALUATION ************************************************************************************************
+*********************************************************************************************
+LINKING FAILED
+The linking process failed in some stage.
+Depending on the phase the linker failed, part of the information contained in this map file may be inaccurate or wrong.
+If the linking failed before the allocation phase finished, then the addresses might be inaccurate.
+Also summary information like the code size is likely to be misleading.
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+
+PROGRAM "C:\Users\rmann\OneDrive - Indiana University\Documents\2023 Fall Classes\Microprocesser Lab\lab7\lab7.2\bin\Project.abs"
+
+*********************************************************************************************
+TARGET SECTION
+---------------------------------------------------------------------------------------------
+Processor   : Freescale HC12
+Memory Model: SMALL
+File Format : ELF (no debug info)
+Linker      : SmartLinker V-5.0.52 Build 15249, Sep  7 2015
+
+*********************************************************************************************
+FILE SECTION
+---------------------------------------------------------------------------------------------
+main.asm.o                              Model: SMALL,         Lang: Assembler,     Compiler Version: Assembler for HC12 V-5.0.32 Build 15249, Sep  7 2015
+RTI_ISR.asm.o                           Model: SMALL,         Lang: Assembler,     Compiler Version: Assembler for HC12 V-5.0.32 Build 15249, Sep  7 2015
+keypad123.asm.o                         Model: SMALL,         Lang: Assembler,     Compiler Version: Assembler for HC12 V-5.0.32 Build 15249, Sep  7 2015
+
+*********************************************************************************************
+STARTUP SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+SECTION-ALLOCATION SECTION
+Section Name                    Size  Type     From       To       Segment
+---------------------------------------------------------------------------------------------
+
+Summary of section sizes per section type:
+
+*********************************************************************************************
+VECTOR-ALLOCATION SECTION
+    Address     InitValue   InitFunction
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+OBJECT-ALLOCATION SECTION
+     Name               Module                 Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+MODULE:                 -- main.asm.o --
+- PROCEDURES:
+     Entry                                        0'Error      23      35       0   MyCode      
+     _Startup                                     0'Error       0       0       0   MyCode      
+     main                                         0'Error       0       0       0   MyCode      
+     READ_KEYPAD                                  0'Error       B      11       0   MyCode      
+- VARIABLES:
+     ROW_SCAN                                     0'Error       5       5       0   MY_CONST    
+     PD_BUTTONS                                   0'Error      10      16       0   MY_CONST    
+     COUNT                                        0'Error       1       1       0   MY_VAR      
+     TEMP                                         0'Error       1       1       0   MY_VAR      
+     LU_PORT_U                                    0'Error       1       1       0   MY_VAR      
+     KEY_PRESSED                                  0'Error       1       1       0   MY_VAR      
+     T_ON                                         0'Error       1       1       0   MY_VAR      
+     T_OFF                                        0'Error       1       1       0   MY_VAR      
+- LABELS:
+     __SEG_END_SSTACK                             0'Error       0       0       0               
+     CRGFLG                                      37       0       0       0   .text       
+     Port_t                                     240       0       0       0   .text       
+     Port_u                                     268       0       0       0   .text       
+MODULE:                 -- RTI_ISR.asm.o --
+- PROCEDURES:
+     RTI_ISR                                      0'Error       7       7       0   RTI_ISR.asm._SEC000000
+- VARIABLES:
+MODULE:                 -- keypad123.asm.o --
+- PROCEDURES:
+     key                                          0'Error       5       5       0   keypad123.asm._SEC000000
+     LOAD_NEXT_ROW                                0'Error      1A      26       0   keypad123.asm._SEC000000
+     LU_TABLE_LOOP                                0'Error       A      10       0   keypad123.asm._SEC000000
+     Not_pressed                                  0'Error       3       3       0   keypad123.asm._SEC000000
+     MATCH_FOUND                                  0'Error       6       6       0   keypad123.asm._SEC000000
+     DELAY_ENTRY                                  0'Error       3       3       0   keypad123.asm._SEC000000
+     DELAY_LOOP                                   0'Error       4       4       0   keypad123.asm._SEC000000
+- VARIABLES:
+
+*********************************************************************************************
+MODULE STATISTIC
+  Name                                      Data   Code  Const
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+SECTION USE IN OBJECT-ALLOCATION SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+OBJECT LIST SORTED BY ADDRESS
+     Name                                      Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+UNUSED-OBJECTS SECTION
+---------------------------------------------------------------------------------------------
+NOT USED PROCEDURES
+RTI_ISR.asm.o:
+  SET_LOW_FLAG SET_HIGH_FLAG LED_A_INSTANCE_CHECK NOT_YET_LED_A LED_A_DELAY 
+  REAL_TIME_INTERUPTS COUNT_LESS_THAN_T_ON COUNT_GREATER_THAN_T_ON LESS_THAN_15 
+  GREATER_THAN_15 LED_B_INSTANCE_CHECK NOT_YET_LED_B LED_B_DELAY 
+  RTI_INSTANCE_CHECK NOT_8TH_INSTANCE STEEPER_MOTOR_DELAY RESTART JUMP_OUT 
+
+*********************************************************************************************
+COPYDOWN SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+OBJECT-DEPENDENCIES SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+STATISTIC SECTION
+---------------------------------------------------------------------------------------------
+
+ExeFile:
+--------
+Number of blocks to be downloaded: 0
+Total size of all blocks to be downloaded: 0
+

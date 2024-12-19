@@ -1,0 +1,172 @@
+*** EVALUATION ***
+PROGRAM "C:\Users\ravimann\OneDrive - Indiana University\Documents\2023 Fall Classes\Microprocesser Lab\lab7\lab7.1\bin\Project.abs"
+
+*********************************************************************************************
+TARGET SECTION
+---------------------------------------------------------------------------------------------
+Processor   : Freescale HC12
+Memory Model: SMALL
+File Format : ELF\DWARF 2.0
+Linker      : SmartLinker V-5.0.40 Build 10203, Jul 23 2010
+
+*********************************************************************************************
+FILE SECTION
+---------------------------------------------------------------------------------------------
+main.asm.o                              Model: SMALL,         Lang: Assembler
+Read_PortU.asm.o                        Model: SMALL,         Lang: Assembler
+
+*********************************************************************************************
+STARTUP SECTION
+---------------------------------------------------------------------------------------------
+Entry point: 0xC000 (Entry)
+
+*********************************************************************************************
+SECTION-ALLOCATION SECTION
+Section Name                    Size  Type     From       To       Segment
+---------------------------------------------------------------------------------------------
+.init                             93     R     0xC000     0xC05C   ROM_C000
+.stack                           256   R/W      0x400      0x4FF   RAM
+MY_CONST                          21     R     0xC05D     0xC071   ROM_C000
+MY_VAR                             4   R/W      0x500      0x503   RAM
+Read_PortU.asm._SEC000000         57     R   0x388000   0x388038   PAGE_38
+.vectSeg0_vect                     2     R     0xFFFE     0xFFFF   .vectSeg0
+
+Summary of section sizes per section type:
+READ_ONLY (R):          AD (dec:      173)
+READ_WRITE (R/W):      104 (dec:      260)
+
+*********************************************************************************************
+VECTOR-ALLOCATION SECTION
+    Address     InitValue   InitFunction
+---------------------------------------------------------------------------------------------
+     0xFFFE        0xC000   Entry
+
+*********************************************************************************************
+OBJECT-ALLOCATION SECTION
+     Name               Module                 Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+MODULE:                 -- main.asm.o --
+- PROCEDURES:
+     Entry                                     C000      1B      27       0   .init       
+     _Startup                                  C000       0       0       0   .init       
+     main                                      C000       0       0       0   .init       
+     Read_Keypad                               C01B      12      18       0   .init       
+     T_ON_CHECK                                C02D       9       9       0   .init       
+     T_ON_NOT_ZERO                             C036       7       7       0   .init       
+     PWM_DELAY1                                C03D       8       8       0   .init       
+     T_OFF_CHECK                               C045       9       9       0   .init       
+     T_OFF_NOT_ZERO                            C04E       7       7       0   .init       
+     PWM_DELAY2                                C055       8       8       0   .init       
+- VARIABLES:
+     LU_PORT_U                                  500       1       1       2   MY_VAR      
+     Key_pressed                                501       1       1       2   MY_VAR      
+     T_on                                       502       1       1       3   MY_VAR      
+     T_off                                      503       1       1       3   MY_VAR      
+     Row_scan                                  C05D       5       5       1   MY_CONST    
+     PD_BUTTONS                                C062      10      16       1   MY_CONST    
+- LABELS:
+     __SEG_END_SSTACK                           500       0       0       1               
+     PORT_U                                     268       0       0       3   .text       
+MODULE:                 -- Read_PortU.asm.o --
+- PROCEDURES:
+     Read_PortU                              388000       5       5       1   Read_PortU.asm._SEC000000
+     LOAD_NEXT_ROW                           388005      1A      26       0   Read_PortU.asm._SEC000000
+     LU_TABLE_LOOP                           38801F       A      10       0   Read_PortU.asm._SEC000000
+     PWM                                     388029       3       3       0   Read_PortU.asm._SEC000000
+     MATCH_FOUND                             38802C       6       6       0   Read_PortU.asm._SEC000000
+     Start_Delay                             388032       3       3       1   Read_PortU.asm._SEC000000
+     Delay                                   388035       4       4       0   Read_PortU.asm._SEC000000
+- VARIABLES:
+
+*********************************************************************************************
+MODULE STATISTIC
+  Name                                      Data   Code  Const
+---------------------------------------------------------------------------------------------
+  main.asm.o                                   4     93     21
+  Read_PortU.asm.o                             0     57      0
+  other                                      256      2      0
+
+*********************************************************************************************
+SECTION USE IN OBJECT-ALLOCATION SECTION
+---------------------------------------------------------------------------------------------
+SECTION: ".text"
+  PORT_U 
+SECTION: ".init"
+  main _Startup Entry Read_Keypad T_ON_CHECK T_ON_NOT_ZERO PWM_DELAY1 
+  T_OFF_CHECK T_OFF_NOT_ZERO PWM_DELAY2 
+SECTION: "MY_CONST"
+  Row_scan PD_BUTTONS 
+SECTION: "MY_VAR"
+  LU_PORT_U Key_pressed T_on T_off 
+SECTION: "Read_PortU.asm._SEC000000"
+  Read_PortU LOAD_NEXT_ROW LU_TABLE_LOOP PWM MATCH_FOUND Start_Delay Delay 
+
+*********************************************************************************************
+OBJECT LIST SORTED BY ADDRESS
+     Name                                      Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+     PORT_U                                     268       0       0       3   .text       
+     LU_PORT_U                                  500       1       1       2   MY_VAR      
+     Key_pressed                                501       1       1       2   MY_VAR      
+     T_on                                       502       1       1       3   MY_VAR      
+     T_off                                      503       1       1       3   MY_VAR      
+     main                                      C000       0       0       0   .init       
+     _Startup                                  C000       0       0       0   .init       
+     Entry                                     C000      1B      27       0   .init       
+     Read_Keypad                               C01B      12      18       0   .init       
+     T_ON_CHECK                                C02D       9       9       0   .init       
+     T_ON_NOT_ZERO                             C036       7       7       0   .init       
+     PWM_DELAY1                                C03D       8       8       0   .init       
+     T_OFF_CHECK                               C045       9       9       0   .init       
+     T_OFF_NOT_ZERO                            C04E       7       7       0   .init       
+     PWM_DELAY2                                C055       8       8       0   .init       
+     Row_scan                                  C05D       5       5       1   MY_CONST    
+     PD_BUTTONS                                C062      10      16       1   MY_CONST    
+     Read_PortU                              388000       5       5       1   Read_PortU.asm._SEC000000
+     LOAD_NEXT_ROW                           388005      1A      26       0   Read_PortU.asm._SEC000000
+     LU_TABLE_LOOP                           38801F       A      10       0   Read_PortU.asm._SEC000000
+     PWM                                     388029       3       3       0   Read_PortU.asm._SEC000000
+     MATCH_FOUND                             38802C       6       6       0   Read_PortU.asm._SEC000000
+     Start_Delay                             388032       3       3       1   Read_PortU.asm._SEC000000
+     Delay                                   388035       4       4       0   Read_PortU.asm._SEC000000
+
+*********************************************************************************************
+UNUSED-OBJECTS SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+COPYDOWN SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+OBJECT-DEPENDENCIES SECTION
+---------------------------------------------------------------------------------------------
+Entry                     USES __SEG_END_SSTACK 
+Read_Keypad               USES Read_PortU Key_pressed T_on T_off 
+T_ON_CHECK                USES T_on 
+PWM_DELAY1                USES T_on 
+T_OFF_CHECK               USES T_off 
+PWM_DELAY2                USES T_off 
+Read_PortU                USES Row_scan 
+LOAD_NEXT_ROW             USES PORT_U Start_Delay LU_PORT_U PD_BUTTONS 
+LU_TABLE_LOOP             USES LU_PORT_U 
+MATCH_FOUND               USES Key_pressed 
+
+*********************************************************************************************
+DEPENDENCY TREE
+*********************************************************************************************
+ main and _Startup Group
+ | 
+ +- main                
+ |    
+ +- Entry               
+      
+*********************************************************************************************
+STATISTIC SECTION
+---------------------------------------------------------------------------------------------
+
+ExeFile:
+--------
+Number of blocks to be downloaded: 4
+Total size of all blocks to be downloaded: 173
+

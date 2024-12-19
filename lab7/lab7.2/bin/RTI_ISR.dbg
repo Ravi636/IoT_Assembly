@@ -1,0 +1,135 @@
+ XDEF RTI_ISR,
+  XREF COUNT,PORT_T,T_ON,CRGFLG,PORT_P_DDR, PORT_T_DDR,PORT_S, STATE_FLAG, STEEPER_COUNT,RTI_COUNT,LED_COUNT_STATE_A,LED_COUNT_STATE_B
+ 
+ 
+ 
+RTI_ISR:        
+          ; LDAA #$0;Set Count = 0
+          ; STAA COUNT          
+             
+           
+           
+RTI_CHECK_STATE:    
+            BRSET   PORT_T, #$01, SET_LOW_FLAG        ; branch to Clockwise if bit 1 is 1
+            BRA     SET_HIGH_FLAG          
+                                                      ; branch back to Loop1 because both bits are 00
+SET_LOW_FLAG:
+            LDAA #0
+            STAA STATE_FLAG
+            BRA LED_A_INSTANCE_CHECK
+SET_HIGH_FLAG:
+            LDAA #1
+            STAA STATE_FLAG
+            BRA LED_B_INSTANCE_CHECK
+           
+;
+
+
+
+LED_A_INSTANCE_CHECK:
+            LDAA LED_COUNT_STATE_A
+            INCA
+            CMPA #15
+            BEQ LED_A_DELAY
+            BRA NOT_YET_LED_A
+NOT_YET_LED_A:
+            STAA LED_COUNT_STATE_A
+            BSET CRGFLG,#$80;clear RTIF
+            RTI;Return from interupt            
+LED_A_DELAY:
+            LDAB PORT_S
+            EORB #$FF
+            STAB PORT_S        
+            LDAA #0
+            STAA LED_COUNT_STATE_A
+            BRA REAL_TIME_INTERUPTS
+ ;          
+ 
+ 
+ 
+ 
+REAL_TIME_INTERUPTS:                        
+            LDAA COUNT          
+            INCA;Increment Count
+            STAA COUNT
+            CMPA T_ON ;A-MEM
+            Bmi COUNT_LESS_THAN_T_ON
+            BRA COUNT_GREATER_THAN_T_ON
+COUNT_LESS_THAN_T_ON:
+            BSET PORT_T,#$08
+            BSET CRGFLG,#$80;clear RTIF
+            RTI;Return from interupt
+COUNT_GREATER_THAN_T_ON  
+            CMPA #$0F
+            BMI LESS_THAN_15
+            BRA GREATER_THAN_15
+LESS_THAN_15:
+            BCLR PORT_T,#$08
+            BSET CRGFLG,#$80;clear RTIF
+            RTI;Return from interupt
+GREATER_THAN_15:
+            LDAA #$0
+            STAA COUNT
+            BSET CRGFLG,#$80;clear RTIF
+            RTI;Return from interupt      
+
+
+
+
+LED_B_INSTANCE_CHECK:
+            LDAA LED_COUNT_STATE_B
+            INCA
+            CMPA #7
+            BEQ LED_B_DELAY
+            BRA NOT_YET_LED_B
+NOT_YET_LED_B:
+            STAA LED_COUNT_STATE_B
+            BSET CRGFLG,#$80;clear RTIF
+            RTI;Return from interupt            
+LED_B_DELAY:
+            LDAB PORT_S
+            EORB #$FF
+            STAB PORT_S        
+            LDAA #0
+            STAA LED_COUNT_STATE_B
+            BRA RTI_INSTANCE_CHECK
+
+
+
+
+
+
+;WE NEED TO RUN THE RTI AT LEAST 5-8 INSTANCES TO IMPLEMENT STAE_B
+;8*4000 = 32,000 MS
+RTI_INSTANCE_CHECK:
+            LDAA RTI_COUNT
+            INCA
+            CMPA #7
+            BEQ STEEPER_MOTOR_DELAY
+            BRA NOT_8TH_INSTANCE
+                       
+NOT_8TH_INSTANCE:            
+            STAA RTI_COUNT
+            BSET CRGFLG,#$80;clear RTIF
+            RTI;Return from interupt        
+             
+ 
+ 
+ 
+ 
+               
+STEEPER_MOTOR_DELAY:
+            LDAA #$0
+            STAA RTI_COUNT
+            LDAA STEEPER_COUNT
+            INCA
+            STAA STEEPER_COUNT
+            CMPA #$4
+            BEQ RESTART
+            BRA JUMP_OUT
+RESTART:    
+            LDAA #0
+            STAA STEEPER_COUNT
+JUMP_OUT:      
+            BSET CRGFLG,#$80;clear RTIF    
+            RTI              

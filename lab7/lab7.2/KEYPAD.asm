@@ -1,0 +1,49 @@
+  XDEF  KEYPAD
+  XREF  PORT_U, ROW_SCAN, KEY_PRESSED , PRESSED_OR_NOT_PRESSED ,LU_PORT_U, PD_BUTTONS
+
+
+
+KEYPAD:         PSHB
+                PSHA
+LOAD_FIRST_ROW: LDX   #ROW_SCAN      ; load x with first row array value
+LOAD_NEXT_ROW:  LDAB  1,X+          ; load row into b, and set x to next row
+                ;CMPB  #$0
+                BEQ   PWM ; if checked last row, go back to first
+                STAB  PORT_U        ; send the row array value to port u
+                JSR   DELAY_ENTRY   ; delay for 1ms
+                BRCLR PORT_U, #$0F, LOAD_NEXT_ROW ; if no button pressed then load the next row. will continue on if a button has been pressed
+                LDAA  PORT_U        ; load port u into a
+                STAA  LU_PORT_U     ; save port u value for later. use with lu table
+              ;  MOVB LU_PORT_U,$248 
+
+;CHECK_RELEASE:  LDAB  PORT_U        ; read in port u again
+;                STAB  TEMP_PORT_U   ; store port u to temp location
+;               BRCLR TEMP_PORT_U, #$0F, RELEASED
+;                BRA   CHECK_RELEASE 
+;
+RELEASED:       LDX   #PD_BUTTONS    ; address of first pull down button
+                LDAA  #00            ; initialize counter
+LU_TABLE_LOOP:  LDAB  1,X+           ; load address of pull down button into x and go to next button
+                CMPB  LU_PORT_U      ; if match is found
+                BEQ   MATCH_FOUND
+                INCA 
+                bra LU_TABLE_LOOP 
+        
+        
+        PWM:    PULA 
+                PULB
+                RTS               
+               ; BRA  PRESSED_OR_NOT_PRESSED  ; if a match is not found branch to PWM ROUTINE
+                
+
+MATCH_FOUND:    STAA  KEY_PRESSED    ; store the counter to key_pressed
+                PULA
+                PULB
+                RTS                  ; go back to main loop              
+                
+                          
+DELAY_ENTRY:  LDY #3000
+DELAY_LOOP    DEY 
+              BNE DELAY_LOOP
+              RTS
+

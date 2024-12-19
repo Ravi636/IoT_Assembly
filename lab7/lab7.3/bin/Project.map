@@ -1,0 +1,264 @@
+*** EVALUATION ***
+PROGRAM "C:\Users\rmann\OneDrive - Indiana University\Documents\2023 Fall Classes\Microprocesser Lab\lab7\lab7.3\bin\Project.abs"
+
+*********************************************************************************************
+TARGET SECTION
+---------------------------------------------------------------------------------------------
+Processor   : Freescale HC12
+Memory Model: SMALL
+File Format : ELF\DWARF 2.0
+Linker      : SmartLinker V-5.0.52 Build 15249, Sep  7 2015
+
+*********************************************************************************************
+FILE SECTION
+---------------------------------------------------------------------------------------------
+main.asm.o                              Model: SMALL,         Lang: Assembler,     Compiler Version: Assembler for HC12 V-5.0.32 Build 15249, Sep  7 2015
+KEYPAD.asm.o                            Model: SMALL,         Lang: Assembler,     Compiler Version: Assembler for HC12 V-5.0.32 Build 15249, Sep  7 2015
+RTI_ISR.asm.o                           Model: SMALL,         Lang: Assembler,     Compiler Version: Assembler for HC12 V-5.0.32 Build 15249, Sep  7 2015
+
+*********************************************************************************************
+STARTUP SECTION
+---------------------------------------------------------------------------------------------
+Entry point: 0xC000 (Entry)
+
+*********************************************************************************************
+SECTION-ALLOCATION SECTION
+Section Name                    Size  Type     From       To       Segment
+---------------------------------------------------------------------------------------------
+.init                             88     R     0xC000     0xC057   ROM_C000
+.stack                           256   R/W      0x400      0x4FF   RAM
+MY_CONST                          25     R     0xC058     0xC070   ROM_C000
+MY_VAR                            11   R/W      0x500      0x50A   RAM
+KEYPAD.asm._SEC000000             57     R     0xC071     0xC0A9   ROM_C000
+RTI_ISR.asm._SEC000000           181     R     0xC0AA     0xC15E   ROM_C000
+.vectSeg0_vect                     2     R     0xFFF0     0xFFF1   .vectSeg0
+.vectSeg1_vect                     2     R     0xFFFE     0xFFFF   .vectSeg1
+
+Summary of section sizes per section type:
+READ_ONLY (R):         163 (dec:      355)
+READ_WRITE (R/W):      10B (dec:      267)
+
+*********************************************************************************************
+VECTOR-ALLOCATION SECTION
+    Address     InitValue   InitFunction
+---------------------------------------------------------------------------------------------
+     0xFFF0        0xC0AA   RTI_ISR
+     0xFFFE        0xC000   Entry
+
+*********************************************************************************************
+OBJECT-ALLOCATION SECTION
+     Name               Module                 Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+MODULE:                 -- main.asm.o --
+- PROCEDURES:
+     Entry                                     C000      23      35       0   .init       
+     _Startup                                  C000       0       0       0   .init       
+     main                                      C000       0       0       0   .init       
+     MAIN_CHECK_STATE                          C023       7       7       0   .init       
+     STATE_A_TRANSITION                        C02A       2       2       0   .init       
+     STATE_B_TRANSITION                        C02C       2       2       0   .init       
+     STATE_A                                   C02E      12      18       0   .init       
+     STATE_B                                   C040      18      24       0   .init       
+- VARIABLES:
+     COUNT                                      500       1       1       3   MY_VAR      
+     TEMP                                       501       1       1       0   MY_VAR      
+     LU_PORT_U                                  502       1       1       2   MY_VAR      
+     KEY_PRESSED                                503       1       1       2   MY_VAR      
+     T_ON                                       504       1       1       2   MY_VAR      
+     T_OFF                                      505       1       1       0   MY_VAR      
+     STATE_FLAG                                 506       1       1       4   MY_VAR      
+     STEEPER_COUNT                              507       1       1       4   MY_VAR      
+     LED_COUNT_STATE_A                          508       1       1       3   MY_VAR      
+     LED_COUNT_STATE_B                          509       1       1       3   MY_VAR      
+     RTI_COUNT                                  50A       1       1       3   MY_VAR      
+     ROW_SCAN                                  C058       5       5       1   MY_CONST    
+     PD_BUTTONS                                C05D      10      16       1   MY_CONST    
+     ARRAY                                     C06D       4       4       1   MY_CONST    
+- LABELS:
+     __SEG_END_SSTACK                           500       0       0       1               
+     CRGFLG                                      37       0       0       7   .text       
+     PORT_T                                     240       0       0       3   .text       
+     PORT_T_DDR                                 242       0       0       0   .text       
+     PORT_S                                     248       0       0       4   .text       
+     PORT_P_DDR                                 25A       0       0       0   .text       
+     PORT_U                                     268       0       0       3   .text       
+MODULE:                 -- KEYPAD.asm.o --
+- PROCEDURES:
+     KEYPAD                                    C071       5       5       1   KEYPAD.asm._SEC000000
+     LOAD_NEXT_ROW                             C076      1A      26       0   KEYPAD.asm._SEC000000
+     LU_TABLE_LOOP                             C090       A      10       0   KEYPAD.asm._SEC000000
+     PWM                                       C09A       3       3       0   KEYPAD.asm._SEC000000
+     MATCH_FOUND                               C09D       6       6       0   KEYPAD.asm._SEC000000
+     DELAY_ENTRY                               C0A3       3       3       1   KEYPAD.asm._SEC000000
+     DELAY_LOOP                                C0A6       4       4       0   KEYPAD.asm._SEC000000
+- VARIABLES:
+MODULE:                 -- RTI_ISR.asm.o --
+- PROCEDURES:
+     RTI_ISR                                   C0AA       7       7       0   RTI_ISR.asm._SEC000000
+     SET_LOW_FLAG                              C0B1       7       7       0   RTI_ISR.asm._SEC000000
+     SET_HIGH_FLAG                             C0B8       7       7       0   RTI_ISR.asm._SEC000000
+     LED_A_INSTANCE_CHECK                      C0BF       A      10       0   RTI_ISR.asm._SEC000000
+     NOT_YET_LED_A                             C0C9       8       8       0   RTI_ISR.asm._SEC000000
+     LED_A_DELAY                               C0D1       F      15       0   RTI_ISR.asm._SEC000000
+     REAL_TIME_INTERUPTS                       C0E0       E      14       0   RTI_ISR.asm._SEC000000
+     COUNT_LESS_THAN_T_ON                      C0EE       9       9       0   RTI_ISR.asm._SEC000000
+     COUNT_GREATER_THAN_T_ON                   C0F7       6       6       0   RTI_ISR.asm._SEC000000
+     LESS_THAN_15                              C0FD       9       9       0   RTI_ISR.asm._SEC000000
+     GREATER_THAN_15                           C106       A      10       0   RTI_ISR.asm._SEC000000
+     LED_B_INSTANCE_CHECK                      C110       A      10       0   RTI_ISR.asm._SEC000000
+     NOT_YET_LED_B                             C11A       8       8       0   RTI_ISR.asm._SEC000000
+     LED_B_DELAY                               C122       F      15       0   RTI_ISR.asm._SEC000000
+     RTI_INSTANCE_CHECK                        C131       A      10       0   RTI_ISR.asm._SEC000000
+     NOT_8TH_INSTANCE                          C13B       8       8       0   RTI_ISR.asm._SEC000000
+     STEEPER_MOTOR_DELAY                       C143      12      18       0   RTI_ISR.asm._SEC000000
+     RESTART                                   C155       5       5       0   RTI_ISR.asm._SEC000000
+     JUMP_OUT                                  C15A       5       5       0   RTI_ISR.asm._SEC000000
+- VARIABLES:
+
+*********************************************************************************************
+MODULE STATISTIC
+  Name                                      Data   Code  Const
+---------------------------------------------------------------------------------------------
+  main.asm.o                                  11     88     25
+  KEYPAD.asm.o                                 0     57      0
+  RTI_ISR.asm.o                                0    181      0
+  other                                      256      4      0
+
+*********************************************************************************************
+SECTION USE IN OBJECT-ALLOCATION SECTION
+---------------------------------------------------------------------------------------------
+SECTION: ".text"
+  CRGFLG PORT_T PORT_T_DDR PORT_S PORT_P_DDR PORT_U 
+SECTION: ".init"
+  main _Startup Entry MAIN_CHECK_STATE STATE_A_TRANSITION STATE_B_TRANSITION 
+  STATE_A STATE_B 
+SECTION: "MY_CONST"
+  ROW_SCAN PD_BUTTONS ARRAY 
+SECTION: "MY_VAR"
+  COUNT TEMP LU_PORT_U KEY_PRESSED T_ON T_OFF STATE_FLAG STEEPER_COUNT 
+  LED_COUNT_STATE_A LED_COUNT_STATE_B RTI_COUNT 
+SECTION: "KEYPAD.asm._SEC000000"
+  KEYPAD LOAD_NEXT_ROW LU_TABLE_LOOP PWM MATCH_FOUND DELAY_ENTRY DELAY_LOOP 
+SECTION: "RTI_ISR.asm._SEC000000"
+  RTI_ISR SET_LOW_FLAG SET_HIGH_FLAG LED_A_INSTANCE_CHECK NOT_YET_LED_A 
+  LED_A_DELAY REAL_TIME_INTERUPTS COUNT_LESS_THAN_T_ON COUNT_GREATER_THAN_T_ON 
+  LESS_THAN_15 GREATER_THAN_15 LED_B_INSTANCE_CHECK NOT_YET_LED_B LED_B_DELAY 
+  RTI_INSTANCE_CHECK NOT_8TH_INSTANCE STEEPER_MOTOR_DELAY RESTART JUMP_OUT 
+
+*********************************************************************************************
+OBJECT LIST SORTED BY ADDRESS
+     Name                                      Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+     CRGFLG                                      37       0       0       7   .text       
+     PORT_T                                     240       0       0       3   .text       
+     PORT_T_DDR                                 242       0       0       0   .text       
+     PORT_S                                     248       0       0       4   .text       
+     PORT_P_DDR                                 25A       0       0       0   .text       
+     PORT_U                                     268       0       0       3   .text       
+     COUNT                                      500       1       1       3   MY_VAR      
+     TEMP                                       501       1       1       0   MY_VAR      
+     LU_PORT_U                                  502       1       1       2   MY_VAR      
+     KEY_PRESSED                                503       1       1       2   MY_VAR      
+     T_ON                                       504       1       1       2   MY_VAR      
+     T_OFF                                      505       1       1       0   MY_VAR      
+     STATE_FLAG                                 506       1       1       4   MY_VAR      
+     STEEPER_COUNT                              507       1       1       4   MY_VAR      
+     LED_COUNT_STATE_A                          508       1       1       3   MY_VAR      
+     LED_COUNT_STATE_B                          509       1       1       3   MY_VAR      
+     RTI_COUNT                                  50A       1       1       3   MY_VAR      
+     main                                      C000       0       0       0   .init       
+     _Startup                                  C000       0       0       0   .init       
+     Entry                                     C000      23      35       0   .init       
+     MAIN_CHECK_STATE                          C023       7       7       0   .init       
+     STATE_A_TRANSITION                        C02A       2       2       0   .init       
+     STATE_B_TRANSITION                        C02C       2       2       0   .init       
+     STATE_A                                   C02E      12      18       0   .init       
+     STATE_B                                   C040      18      24       0   .init       
+     ROW_SCAN                                  C058       5       5       1   MY_CONST    
+     PD_BUTTONS                                C05D      10      16       1   MY_CONST    
+     ARRAY                                     C06D       4       4       1   MY_CONST    
+     KEYPAD                                    C071       5       5       1   KEYPAD.asm._SEC000000
+     LOAD_NEXT_ROW                             C076      1A      26       0   KEYPAD.asm._SEC000000
+     LU_TABLE_LOOP                             C090       A      10       0   KEYPAD.asm._SEC000000
+     PWM                                       C09A       3       3       0   KEYPAD.asm._SEC000000
+     MATCH_FOUND                               C09D       6       6       0   KEYPAD.asm._SEC000000
+     DELAY_ENTRY                               C0A3       3       3       1   KEYPAD.asm._SEC000000
+     DELAY_LOOP                                C0A6       4       4       0   KEYPAD.asm._SEC000000
+     RTI_ISR                                   C0AA       7       7       0   RTI_ISR.asm._SEC000000
+     SET_LOW_FLAG                              C0B1       7       7       0   RTI_ISR.asm._SEC000000
+     SET_HIGH_FLAG                             C0B8       7       7       0   RTI_ISR.asm._SEC000000
+     LED_A_INSTANCE_CHECK                      C0BF       A      10       0   RTI_ISR.asm._SEC000000
+     NOT_YET_LED_A                             C0C9       8       8       0   RTI_ISR.asm._SEC000000
+     LED_A_DELAY                               C0D1       F      15       0   RTI_ISR.asm._SEC000000
+     REAL_TIME_INTERUPTS                       C0E0       E      14       0   RTI_ISR.asm._SEC000000
+     COUNT_LESS_THAN_T_ON                      C0EE       9       9       0   RTI_ISR.asm._SEC000000
+     COUNT_GREATER_THAN_T_ON                   C0F7       6       6       0   RTI_ISR.asm._SEC000000
+     LESS_THAN_15                              C0FD       9       9       0   RTI_ISR.asm._SEC000000
+     GREATER_THAN_15                           C106       A      10       0   RTI_ISR.asm._SEC000000
+     LED_B_INSTANCE_CHECK                      C110       A      10       0   RTI_ISR.asm._SEC000000
+     NOT_YET_LED_B                             C11A       8       8       0   RTI_ISR.asm._SEC000000
+     LED_B_DELAY                               C122       F      15       0   RTI_ISR.asm._SEC000000
+     RTI_INSTANCE_CHECK                        C131       A      10       0   RTI_ISR.asm._SEC000000
+     NOT_8TH_INSTANCE                          C13B       8       8       0   RTI_ISR.asm._SEC000000
+     STEEPER_MOTOR_DELAY                       C143      12      18       0   RTI_ISR.asm._SEC000000
+     RESTART                                   C155       5       5       0   RTI_ISR.asm._SEC000000
+     JUMP_OUT                                  C15A       5       5       0   RTI_ISR.asm._SEC000000
+
+*********************************************************************************************
+UNUSED-OBJECTS SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+COPYDOWN SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+OBJECT-DEPENDENCIES SECTION
+---------------------------------------------------------------------------------------------
+Entry                     USES __SEG_END_SSTACK 
+MAIN_CHECK_STATE          USES STATE_FLAG 
+STATE_A                   USES KEYPAD KEY_PRESSED T_ON STATE_FLAG 
+STATE_B                   USES ARRAY STEEPER_COUNT 
+KEYPAD                    USES ROW_SCAN 
+LOAD_NEXT_ROW             USES PORT_U DELAY_ENTRY LU_PORT_U PD_BUTTONS 
+LU_TABLE_LOOP             USES LU_PORT_U 
+MATCH_FOUND               USES KEY_PRESSED 
+RTI_ISR                   USES PORT_T 
+SET_LOW_FLAG              USES STATE_FLAG 
+SET_HIGH_FLAG             USES STATE_FLAG 
+LED_A_INSTANCE_CHECK      USES LED_COUNT_STATE_A 
+NOT_YET_LED_A             USES LED_COUNT_STATE_A CRGFLG 
+LED_A_DELAY               USES PORT_S LED_COUNT_STATE_A 
+REAL_TIME_INTERUPTS       USES COUNT T_ON 
+COUNT_LESS_THAN_T_ON      USES PORT_T CRGFLG 
+LESS_THAN_15              USES PORT_T CRGFLG 
+GREATER_THAN_15           USES COUNT CRGFLG 
+LED_B_INSTANCE_CHECK      USES LED_COUNT_STATE_B 
+NOT_YET_LED_B             USES LED_COUNT_STATE_B CRGFLG 
+LED_B_DELAY               USES PORT_S LED_COUNT_STATE_B 
+RTI_INSTANCE_CHECK        USES RTI_COUNT 
+NOT_8TH_INSTANCE          USES RTI_COUNT CRGFLG 
+STEEPER_MOTOR_DELAY       USES RTI_COUNT STEEPER_COUNT 
+RESTART                   USES STEEPER_COUNT 
+JUMP_OUT                  USES CRGFLG 
+
+*********************************************************************************************
+DEPENDENCY TREE
+*********************************************************************************************
+ main and _Startup Group
+ | 
+ +- main                
+ |    
+ +- Entry               
+      
+ RTI_ISR             
+   
+*********************************************************************************************
+STATISTIC SECTION
+---------------------------------------------------------------------------------------------
+
+ExeFile:
+--------
+Number of blocks to be downloaded: 5
+Total size of all blocks to be downloaded: 355
+
